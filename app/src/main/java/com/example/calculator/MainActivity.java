@@ -4,17 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button button0,button1,button2,button3,button4,button5,button6,button7,button8,button9;
-    Button add_operator, sub_operator, mul_operator,div_operator,equal_operator,remove;
+    Button add_operator, sub_operator, mul_operator,div_operator,equal_operator,clear_button;
+    ImageView imgCross;
    EditText editText;
 
-   String number1, number2;
+   String number1,number2;
    int operatorType;//1==plus,2==minus,3==multiply,4==divide
 
     @Override
@@ -41,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mul_operator=findViewById(R.id.btn_multiply);
         div_operator=findViewById(R.id.btn_divide);
         equal_operator=findViewById(R.id.btn_equalto);
-        remove=findViewById(R.id.btn_cross);
-
+        imgCross=findViewById(R.id.img_cross);
+        clear_button=findViewById(R.id.btn_clear);
         editText=findViewById(R.id.et_textbox);
 
         button0.setOnClickListener(this);
@@ -61,67 +65,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mul_operator.setOnClickListener(this);
         div_operator.setOnClickListener(this);
         equal_operator.setOnClickListener(this);
+        clear_button.setOnClickListener(this);
 
-        remove.setOnClickListener(this);
+        imgCross.setOnClickListener(this);
   }
 
     @Override
     public void onClick(View v) {
-      if(v.getId()== R.id.btn_zero)
-      {
-          editText.setText(editText.getText() + "0");
-      }
 
-        if(v.getId()== R.id.btn_one)
-        {
-            editText.setText(editText.getText() + "1");
-        }
+      if(v.getId()== R.id.btn_zero)  {
+          editText.setText(editText.getText() + "0");   }
 
-        if(v.getId()== R.id.btn_two)
-        {
-            editText.setText(editText.getText() + "2");
-        }
+        if(v.getId()== R.id.btn_one)        {
+            editText.setText(editText.getText() + "1");        }
 
-        if(v.getId()==R.id.btn_three)
-        {
-            editText.setText(editText.getText()+"3");
-        }
+        if(v.getId()== R.id.btn_two)        {
+            editText.setText(editText.getText() + "2");        }
 
-        if(v.getId()==R.id.btn_four)
-        {
-            editText.setText(editText.getText()+"4");
-        }
+        if(v.getId()==R.id.btn_three)        {
+            editText.setText(editText.getText()+"3");        }
 
-        if(v.getId()==R.id.btn_five)
-        {
-            editText.setText(editText.getText()+"5");
-        }
+        if(v.getId()==R.id.btn_four)        {
+            editText.setText(editText.getText()+"4");        }
 
-        if(v.getId()==R.id.btn_six)
-        {
-            editText.setText(editText.getText()+"6");
-        }
+        if(v.getId()==R.id.btn_five)        {
+            editText.setText(editText.getText()+"5");        }
 
-        if(v.getId()==R.id.btn_seven)
-        {
-            editText.setText(editText.getText()+"7");
-        }
+        if(v.getId()==R.id.btn_six)        {
+            editText.setText(editText.getText()+"6");        }
 
-        if(v.getId()==R.id.btn_eight)
-        {
-            editText.setText(editText.getText()+"8");
-        }
+        if(v.getId()==R.id.btn_seven)        {
+            editText.setText(editText.getText()+"7");        }
 
-        if(v.getId()==R.id.btn_nine)
-        {
-            editText.setText(editText.getText()+"9");
-        }
+        if(v.getId()==R.id.btn_eight)        {
+            editText.setText(editText.getText()+"8");        }
+
+        if(v.getId()==R.id.btn_nine)        {
+            editText.setText(editText.getText()+"9");        }
 
         if(v.getId()== R.id.btn_plus)
         {
             operatorType = 1;
             number1 = editText.getText().toString();
             editText.setText("");
+            number2 = "";
         }
 
         if(v.getId()==R.id.btn_minus)
@@ -129,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             operatorType=2;
             number1=editText.getText().toString();
             editText.setText("");
+            number2 = "";
         }
 
         if(v.getId()==R.id.btn_multiply)
@@ -136,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             operatorType=3;
             number1=editText.getText().toString();
             editText.setText("");
+            number2 = "";
         }
 
         if(v.getId()==R.id.btn_divide)
@@ -143,46 +132,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             operatorType=4;
             number1=editText.getText().toString();
             editText.setText("");
+            number2 = "";
         }
 
         if (v.getId() == R.id.btn_equalto) {
 
-            number2 = editText.getText().toString();
-
-            if (TextUtils.isEmpty(number1) || TextUtils.isEmpty(number2)) {
+            if (TextUtils.isEmpty(number1) ) {
                 return;
             }
 
-            String equalToResult = "";
-            int num1 =  Integer.parseInt(number1);
-            int num2 = Integer.parseInt(number2);
-
-            switch (operatorType) {
-                case 1:
-                    equalToResult = num1 +num2 + "";
-                    break;
-                case 2:
-                    equalToResult= num1 - num2 + "";
-                    break;
-                case 3:
-                    equalToResult= num1 * num2 + "";
-                    break;
-                case 4:
-                    if (num2 == 0) {
-                        //TODO need to show Toast
-                        number2 = "";
-                        editText.setText("");
-                        return;
-                    }
-                equalToResult=num1 / num2 + "";
-                break;
+            if(TextUtils.isEmpty(number2))
+            {
+                number2 = editText.getText().toString();
+                if (TextUtils.isEmpty(number2)) {
+                    editText.setText(number1);
+                    return;
+                }
             }
-            editText.setText(equalToResult);
-            number1 = equalToResult;
+
+            String equalToResult = "";
+
+            try {
+                long num1 =  Long.parseLong(number1);
+                long num2 = Long.parseLong(number2);
+
+                switch (operatorType) {
+                    case 1:
+                        equalToResult = num1 +num2 + "";
+                        break;
+                    case 2:
+                        equalToResult= num1 - num2 + "";
+                        break;
+                    case 3:
+                        equalToResult= num1 * num2 + "";
+                        break;
+                    case 4:
+                        if (num2 == 0)
+                        {
+                            Toast.makeText(this,"Number should not be divided by Zero",Toast.LENGTH_SHORT).show();
+                            number2 = "";
+                            editText.setText("");
+                            return;
+                        }
+                        equalToResult=num1 / num2 + "";
+                        break;
+                }
+                editText.setText(equalToResult);
+                number1 = equalToResult;
+            }
+
+            catch (NumberFormatException e)
+            {
+             Toast.makeText(this,"Number too long",Toast.LENGTH_SHORT).show();
+             e.printStackTrace();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                Log.d("Calculator error",e.getMessage());
+            }
+
+
         }
 
-        if(v.getId()==R.id.btn_cross)
-        {
+        if(v.getId()==R.id.img_cross)
+        {String editText_text= editText.getText().toString();
+            if (editText_text.length() >0) {
+             editText.setText(editText_text.substring(0, editText_text.length()-1));
+            }
+        }
+
+        if(v.getId()==R.id.btn_clear) {
+
             number1 = "";
             number2 = "";
             operatorType=0;
