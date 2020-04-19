@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:paddingBottom="30dp"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/numberbox">
 
         <EditText
             android:id="@+id/et_textbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="240dp"
-            android:backgroundTint="#ffffff"
+            android:layout_height="match_parent"
             android:background="#E3E3E3"
-            android:textAlignment="gravity"
-            android:gravity="end|top"
+            android:backgroundTint="#ffffff"
             android:focusable="false"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="25dp" />
+            android:gravity="end|top"
+            android:padding="10dp"
+            android:textAlignment="gravity"
+            android:layout_marginTop="20dp"
+            tools:text="Sample Text"
+            android:textSize="40dp" />
 
         <ImageView
             android:id="@+id/img_cross"
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_alignBottom="@+id/et_textbox"
-            android:src="@drawable/ic_backspace"
-            android:background="#E8E8E8"/>
+            android:layout_alignParentEnd="true"
+            android:background="#E8E8E8"
+            android:src="@drawable/ic_backspace" />
+
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/numberbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top"
-        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -72,6 +73,15 @@
                 android:textSize="30dp"/>
 
             <Button
+                android:id="@+id/btn_three"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="3"
+                android:textSize="30dp"
+                android:layout_alignParentEnd="true"/>
+
+            <Button
                 android:id="@+id/btn_plus"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -88,14 +98,6 @@
             android:layout_marginRight="10dp">
 
 
-            <Button
-                android:id="@+id/btn_three"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="3"
-                android:textSize="30dp"
-                android:layout_alignParentEnd="true"/>
 
             <Button
                 android:id="@+id/btn_four"
@@ -104,23 +106,6 @@
                 android:layout_weight="1"
                 android:text="4"
                 android:textSize="30dp"/>
-
-            <Button
-                android:id="@+id/btn_minus"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="-"
-                android:textSize="30dp"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
 
             <Button
                 android:id="@+id/btn_five"
@@ -139,12 +124,13 @@
                 android:textSize="30dp"/>
 
             <Button
-                android:id="@+id/btn_multiply"
+                android:id="@+id/btn_minus"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="*"
+                android:text="-"
                 android:textSize="30dp"/>
+
 
         </LinearLayout>
 
@@ -171,19 +157,19 @@
                 android:textSize="30dp"/>
 
             <Button
-                android:id="@+id/btn_clear"
+                android:id="@+id/btn_nine"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="C"
+                android:text="9"
                 android:textSize="30dp"/>
 
             <Button
-                android:id="@+id/btn_divide"
+                android:id="@+id/btn_multiply"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="/"
+                android:text="*"
                 android:textSize="30dp"/>
 
         </LinearLayout>
@@ -195,11 +181,11 @@
             android:layout_marginRight="10dp">
 
             <Button
-                android:id="@+id/btn_nine"
+                android:id="@+id/btn_clear"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="9"
+                android:text="C"
                 android:textSize="30dp"/>
 
             <Button
@@ -214,8 +200,16 @@
                 android:id="@+id/btn_equalto"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="="
+                android:textSize="30dp"/>
+
+            <Button
+                android:id="@+id/btn_divide"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="/"
                 android:textSize="30dp"/>
 
         </LinearLayout>
