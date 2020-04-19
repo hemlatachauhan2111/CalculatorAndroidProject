@@ -16,7 +16,7 @@
             android:id="@+id/et_textbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="250dp"
+            android:minHeight="240dp"
             android:backgroundTint="#ffffff"
             android:background="#E3E3E3"
             android:textAlignment="gravity"
@@ -43,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/top"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -170,6 +171,14 @@
                 android:textSize="30dp"/>
 
             <Button
+                android:id="@+id/btn_clear"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textSize="30dp"/>
+
+            <Button
                 android:id="@+id/btn_divide"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -205,16 +214,8 @@
                 android:id="@+id/btn_equalto"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="="
-                android:textSize="30dp"/>
-
-            <Button
-                android:id="@+id/btn_clear"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="C"
                 android:textSize="30dp"/>
 
         </LinearLayout>
