@@ -181,14 +181,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 number1 = equalToResult;
             }
 
-            catch (NumberFormatException e)
-            {
+            catch (NumberFormatException e) {
              Toast.makeText(this,"Number too long",Toast.LENGTH_SHORT).show();
-             e.printStackTrace();
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
+            catch (Exception e) {
                 Log.d("Calculator error",e.getMessage());
             }
 
